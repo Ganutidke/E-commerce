@@ -46,7 +46,7 @@ export default function ShopSlugPage({
   }
 
   const product = products.find((p) => p.slug === params.slug);
-  console.log(product);
+
   if (!product) {
     return (
         <div className="bg-background">

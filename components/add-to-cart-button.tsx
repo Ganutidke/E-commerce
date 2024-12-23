@@ -6,7 +6,7 @@ import { useCart } from "@/lib/cart";
 import { toast } from "sonner";
 
 interface Product {
-  id: string;
+  id: number;
   name: string;
   price: number;
   image: string;
@@ -24,7 +24,8 @@ export function AddToCartButton({ product, disabled }: AddToCartButtonProps) {
   const handleAddToCart = () => {
     setLoading(true);
     try {
-      addItem(product);
+      // Convert the product ID to string before passing it to addItem
+      addItem({ ...product, id: String(product.id) });
       toast.success("Added to cart");
     } catch (error) {
       toast.error("Failed to add item to cart");
@@ -34,12 +35,12 @@ export function AddToCartButton({ product, disabled }: AddToCartButtonProps) {
   };
 
   return (
-    <Button
-      onClick={handleAddToCart}
-      disabled={disabled || loading}
-      className="w-full mt-8"
-    >
-      {loading ? "Adding to Cart..." : "Add to Cart"}
-    </Button>
+      <Button
+          onClick={handleAddToCart}
+          disabled={disabled || loading}
+          className="w-full mt-8"
+      >
+        {loading ? "Adding to Cart..." : "Add to Cart"}
+      </Button>
   );
 }

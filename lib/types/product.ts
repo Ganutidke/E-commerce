@@ -1,5 +1,5 @@
 export interface Product {
-  id: string;
+  id: number;
   name: string;
   slug: string;
   price: number;
@@ -7,6 +7,7 @@ export interface Product {
   image: string;
   category: string;
   stock_quantity: number;
+  sizes: string[];
 }
 
 export interface Category {

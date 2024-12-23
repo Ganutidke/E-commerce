@@ -1,6 +1,8 @@
 import { ProductCard } from "@/components/product-card";
 import { categories } from "@/lib/data/categories";
 import { products } from "@/lib/data/products";
+import { Product } from "@/lib/types/product";
+
 
 interface Collection {
   id: string;

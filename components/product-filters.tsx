@@ -1,7 +1,9 @@
-"use client";
-
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 import { Checkbox } from "./ui/checkbox";
+
+interface ProductFiltersProps {
+  categories: { id: string; name: string }[]; // Define the structure of the 'categories' prop
+}
 
 const filters = {
   category: [
@@ -25,57 +27,57 @@ const filters = {
   ],
 };
 
-export function ProductFilters() {
+export function ProductFilters({ categories }: ProductFiltersProps) {
   return (
-    <form>
-      <h2 className="font-semibold mb-4">Filters</h2>
-      <Accordion type="multiple" className="space-y-4">
-        <AccordionItem value="category">
-          <AccordionTrigger>Category</AccordionTrigger>
-          <AccordionContent>
-            <div className="space-y-2">
-              {filters.category.map((option) => (
-                <div key={option.id} className="flex items-center space-x-2">
-                  <Checkbox id={option.id} />
-                  <label htmlFor={option.id} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                    {option.label}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="size">
-          <AccordionTrigger>Size</AccordionTrigger>
-          <AccordionContent>
-            <div className="space-y-2">
-              {filters.size.map((option) => (
-                <div key={option.id} className="flex items-center space-x-2">
-                  <Checkbox id={option.id} />
-                  <label htmlFor={option.id} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                    {option.label}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="color">
-          <AccordionTrigger>Color</AccordionTrigger>
-          <AccordionContent>
-            <div className="space-y-2">
-              {filters.color.map((option) => (
-                <div key={option.id} className="flex items-center space-x-2">
-                  <Checkbox id={option.id} />
-                  <label htmlFor={option.id} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                    {option.label}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </form>
+      <form>
+        <h2 className="font-semibold mb-4">Filters</h2>
+        <Accordion type="multiple" className="space-y-4">
+          <AccordionItem value="category">
+            <AccordionTrigger>Category</AccordionTrigger>
+            <AccordionContent>
+              <div className="space-y-2">
+                {categories.map((category) => (
+                    <div key={category.id} className="flex items-center space-x-2">
+                      <Checkbox id={category.id} />
+                      <label htmlFor={category.id} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        {category.name}
+                      </label>
+                    </div>
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="size">
+            <AccordionTrigger>Size</AccordionTrigger>
+            <AccordionContent>
+              <div className="space-y-2">
+                {filters.size.map((option) => (
+                    <div key={option.id} className="flex items-center space-x-2">
+                      <Checkbox id={option.id} />
+                      <label htmlFor={option.id} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        {option.label}
+                      </label>
+                    </div>
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="color">
+            <AccordionTrigger>Color</AccordionTrigger>
+            <AccordionContent>
+              <div className="space-y-2">
+                {filters.color.map((option) => (
+                    <div key={option.id} className="flex items-center space-x-2">
+                      <Checkbox id={option.id} />
+                      <label htmlFor={option.id} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        {option.label}
+                      </label>
+                    </div>
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </form>
   );
 }

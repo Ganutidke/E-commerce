@@ -13,9 +13,9 @@ const sizeOptions = {
 export const products: Product[] = Array.from({ length: 100 }, (_, i) => {
   const category = categories[Math.floor(Math.random() * categories.length)];
   const categoryName = category.name;
-  const size = sizeOptions[categoryName] || ["One Size"];
+  const size = sizeOptions[categoryName as keyof typeof sizeOptions]  || ["One Size"];
   return {
-    id: `prod_${i + 1}`,
+    id: i + 1,
     name: `Product ${i + 1}`,
     slug: `product-${i + 1}`,
     price: Math.floor(Math.random() * 200) + 50,
